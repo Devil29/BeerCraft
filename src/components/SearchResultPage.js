@@ -1,28 +1,26 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import './css/SearchResultPage.css';
-
-// http://starlord.hackerearth.com/beercraft
-// To get this value from store which which get from api
+import * as ACTIONS from '../store/actions/action';
+import { connect } from 'react-redux';
 
 class SearchResultPage extends Component{
 
     constructor(props){
         super(props);
         this.state = {
-            beerData: [],
             searchValue: "",
             displayBeers: []
         }
     }
 
-    temporayBeerData() {
+    getBeerData() {
         axios.get('https://vue-js-e14f0.firebaseio.com/beers.json')
         .then(res => {
             console.log(res)
             let beerData = res.data;
             beerData = beerData.splice(0,200); //Taking first 200 rest to be handled by Pagination
-            this.setState({beerData});
+            this.props.successBeerdata(beerData);
             this.renderedBeers();
         })
         .catch(error => console.log(error))
@@ -36,11 +34,12 @@ class SearchResultPage extends Component{
     }
 
     renderedBeers(searchValue){
+        let storeBeerData = this.props.storeBeerData;
         if(!searchValue || searchValue===""){
-            this.setState({displayBeers: this.state.beerData});
+            this.setState({displayBeers: storeBeerData});
             return;
         }
-        let beerData = this.state.beerData.filter((beer) => {
+        let beerData = storeBeerData.filter((beer) => {
             let beerName = beer.name.toLowerCase()
             return beerName.indexOf(searchValue.toLowerCase()) !== -1
         });
@@ -56,7 +55,12 @@ class SearchResultPage extends Component{
 
     componentWillMount() {
         console.log('component will mount');
-        this.temporayBeerData(); // Calling Apis as soon as the Component Mount
+        if(this.props.storeBeerData && this.props.storeBeerData.length > 0){
+            console.log("Value is there in the store");
+            this.renderedBeers(); // Just update local data from store
+        } else {
+            this.getBeerData(); //Call api and update data in store
+        }
     }
     componentWillUnmount() {
         console.log('component will unmount');
@@ -74,7 +78,7 @@ class SearchResultPage extends Component{
                     {this.state.displayBeers.map((value, index) => {
                         return <div className="col-sm-3" key={value.id}>
                             <div className="card card-custom">
-                                <img className="card-img-top" className="image-custom" src={require(`../assets/Beericon.png`)} alt="Card image cap"></img>
+                                <img className="card-img-top image-custom" src={require(`../assets/Beericon.png`)} alt="Card cap"></img>
                                 <div className="card-body">
                                     <h5 className="card-title">Name - {value.name}</h5>
                                     <p className="card-text">Style  - {value.style}</p>
@@ -90,4 +94,17 @@ class SearchResultPage extends Component{
     }
 }
 
-export default SearchResultPage;
+function mapStateToProps(state){
+    return {
+        storeBeerData: state.beer.beerList
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        successBeerdata: (beerData) => dispatch(ACTIONS.success(beerData)),
+        failureBeerdata: () => dispatch(ACTIONS.success())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResultPage);
