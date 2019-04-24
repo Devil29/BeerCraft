@@ -1,16 +1,17 @@
-.image-custom {
+.search-page {  
+  .image-custom {
     width: 100px;
     height: 100x;
-}
+  }
 
-.card-custom {
+  .card-custom {
     border: 1px solid mediumseagreen;
     box-shadow: 2px;
     padding: 10px;
     margin-bottom: 5px;
-}
+  }
 
-form.example input[type=text] {
+  form.example input[type=text] {
     padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
@@ -40,3 +41,5 @@ form.example input[type=text] {
     clear: both;
     display: table;
   }
+}
+

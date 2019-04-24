@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import './css/SearchResultPage.css';
+import './css/SearchResultPage.scss';
 import * as ACTIONS from '../store/actions/action';
 import { connect } from 'react-redux';
 
@@ -68,7 +68,7 @@ class SearchResultPage extends Component{
 
     render(){
         return (
-            <div>
+            <div className="search-page">
                 <form className="example">
                     <input type="text" placeholder="Search your favourite beer.." onChange={this.onSearchChange} name="search"></input>
                     <button type="submit" onClick={this.searchItem}>Search</button>
