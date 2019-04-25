@@ -1,19 +1,47 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import './css/AddressPage.scss';
+import axios from 'axios'
+
 class AddressPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            addressData: []
+            displayAddress: []
         }
+    }
+
+    getAddressData() {
+        axios.get('https://vue-js-e14f0.firebaseio.com/data.json')
+        .then (res => {
+            console.log(res)
+            let addressData = res.data;
+            let result=[];
+            console.log(addressData)
+            Object.keys(addressData).forEach(function(key){
+                result.push(addressData[key])
+            });
+            console.log(result);
+            result = result.splice(0,5); //Taking first 200 rest to be handled by Pagination
+            this.setState({displayAddress: result[0].address});
+            this.renderedAddressData();
+        })
+        .catch(error => console.log(error))
+    }
+
+    componentWillMount() {
+        console.log('component will mount');
+            this.getAddressData(); //Call api and update data in store
+    }
+    componentWillUnmount() {
+        console.log('component will unmount');
     }
 
     render() {
         return (
             <div className="address-page">
                 <div className="row">
-                {addressData().map((value, index) => {
+                {this.state.displayAddress.map((value, index) => {
                     return <div className="col-md-4">
                         <div className="card card-custom"> 
                             <div className="card-body">
@@ -43,34 +71,6 @@ class AddressPage extends Component {
             </div>
         );
     }
-}
-
-function addressData() {
-    let data = [{ "addressLine1": "OLA, 4th Floor, Cherry Hills Embassy Golf Links",
-                "addressLine2": "Domlur Bangalore",
-                "title": "Office",
-                "city": "BENGALURU",
-                "state": "KARNATAKA",
-                "pincode": 560071,
-                "mobileNumber": 7896362237
-            },
-            { "addressLine1": "110A/27 Vyas apartment-A",
-                "addressLine2": "sector-11 pratap nagar",
-                "city": "JAIPUR",
-                "title": "College",
-                "state": "RAJSTHAN",
-                "pincode": 302022,
-                "mobileNumber": 8769418092
-            },
-            { "addressLine1": "F-F-4, Plot No-353",
-                "addressLine2": "Shakti Khand-3, Indirapuram",
-                "city": "Ghaziabad",
-                "title": "Home",
-                "state": "UTTAER PRADESH",
-                "pincode": 201014,
-                "mobileNumber": 8769418092
-            }];
-    return data;
 }
 
 export default AddressPage;
