@@ -10,7 +10,8 @@ class SearchResultPage extends Component{
         super(props);
         this.state = {
             searchValue: "",
-            displayBeers: []
+            displayBeers: [],
+            selectedBeer: null
         }
     }
 
@@ -66,6 +67,18 @@ class SearchResultPage extends Component{
         console.log('component will unmount');
     }
 
+    openModelToSelectBeer = (value) => {
+        this.setState({selectedBeer: value})
+    }
+
+    addBeerToCart = (event) => {
+        console.log(this.state.selectedBeer);
+        console.log(event);
+        if (this.refs.itemCount) {
+            console.log(this.refs.itemCount.value);
+        }
+    }
+
     render(){
         return (
             <div className="search-page">
@@ -74,6 +87,32 @@ class SearchResultPage extends Component{
                     <button type="submit" onClick={this.searchItem}>Search</button>
                 </form>
                 <br></br>
+                <div id="myModal" className="modal fade" role="dialog">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                                <h4 className="modal-title">{this.state.selectedBeer && this.state.selectedBeer.name}</h4>
+                                <p>Ounces - {this.state.selectedBeer && this.state.selectedBeer.ounces}</p>
+                            </div>
+                            <div className="modal-body">
+                                <div className="form-group">
+                                    <label for="itemCount">Count: </label>
+                                    <select className="form-control" id="itemCount" ref="itemCount">
+                                        <option id="1" value="1">1</option>
+                                        <option id="2" value="2">2</option>
+                                        <option id="3" value="3">3</option>
+                                        <option id="4" value="4">4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary" onClick={this.addBeerToCart}  data-dismiss="modal">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="row">
                     {this.state.displayBeers.map((value, index) => {
                         return <div className="col-sm-3" key={value.id}>
@@ -83,7 +122,7 @@ class SearchResultPage extends Component{
                                     <h5 className="card-title">Name - {value.name}</h5>
                                     <p className="card-text">Style  - {value.style}</p>
                                     <p className="card-text-2">Ounces - {value.ounces}</p>
-                                    <button className="btn btn-primary">Add To Cart</button>
+                                    <button className="btn btn-primary" data-toggle="modal" onClick={() => this.openModelToSelectBeer(value)} data-target="#myModal">Add To Cart</button>
                                 </div>
                             </div>
                         </div>
