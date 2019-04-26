@@ -24,7 +24,10 @@ class SearchResultPage extends Component{
             this.props.successBeerdata(beerData);
             this.renderedBeers();
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error)
+            this.props.failureBeerdata();
+        })
     }
 
     searchItem = (event) => {
@@ -141,8 +144,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        successBeerdata: (beerData) => dispatch(ACTIONS.success(beerData)),
-        failureBeerdata: () => dispatch(ACTIONS.success())
+        successBeerdata: (beerData) => dispatch(ACTIONS.successBeerCall(beerData)),
+        failureBeerdata: () => dispatch(ACTIONS.failureBeerCall())
     }
 }
 

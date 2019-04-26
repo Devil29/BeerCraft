@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import './css/AddressPage.scss';
 import axios from 'axios'
+import * as ACTIONS from '../store/actions/action';
+import { connect } from 'react-redux';
 
 class AddressPage extends Component {
     constructor(props) {
@@ -73,4 +75,17 @@ class AddressPage extends Component {
     }
 }
 
-export default AddressPage;
+function mapStateToProps(state){
+    return {
+        storeAddressData: state.address.addressList
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        successAddressdata: (addressData) => dispatch(ACTIONS.successAddressCall(addressData)),
+        failureAddressdata: () => dispatch(ACTIONS.failureAddressCall())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddressPage);
