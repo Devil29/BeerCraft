@@ -5,7 +5,7 @@ import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
     beer: beerReducer,
-    address: userReducer
+    user: userReducer
 });
 
 export default rootReducer;

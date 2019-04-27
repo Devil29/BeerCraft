@@ -26,8 +26,8 @@ class AddressPage extends Component {
             console.log(result);
             result = result.splice(0,5); //Taking first 200 rest to be handled by Pagination
             this.setState({displayAddress: result[0].address});
-            this.props.successUserdata(addressData);
-            this.renderedAddressData();
+            this.props.successUserdata(result[0]);
+            // this.renderedAddressData();
         })
         .catch(error => {
             console.log(error)
@@ -36,7 +36,12 @@ class AddressPage extends Component {
 
     componentWillMount() {
         console.log('component will mount');
-            this.getAddressData(); //Call api and update data in store
+        let userData = this.props.getUserData;
+        if(userData){
+            this.setState({displayAddress: userData.address});
+        } else {
+            this.getAddressData();
+        }
     }
     componentWillUnmount() {
         console.log('component will unmount');
@@ -47,7 +52,7 @@ class AddressPage extends Component {
             <div className="address-page">
                 <div className="row">
                 {this.state.displayAddress.map((value, index) => {
-                    return <div className="col-md-4">
+                    return <div className="col-md-4" key={index}>
                         <div className="card card-custom"> 
                             <div className="card-body">
                                 <h5 className="card-title">{value.title}</h5>
@@ -80,13 +85,13 @@ class AddressPage extends Component {
 
 function mapStateToProps(state){
     return {
-        storeAddressData: state.address.addressList
+        getUserData: state.user.user
     }
 }
 
 function mapDispatchToProps(dispatch){
     return {
-        successUserdata: (addressData) => dispatch(ACTIONS.successUserCall(addressData)),
+        successUserdata: (user) => dispatch(ACTIONS.successUserCall(user)),
         failureUserdata: () => dispatch(ACTIONS.failureUserCall())
     }
 }

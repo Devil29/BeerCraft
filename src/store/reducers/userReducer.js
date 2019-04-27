@@ -1,7 +1,7 @@
 import * as ACTION_TYPES from '../actions/action_types'
 
 const initialState = {
-    addressList: []
+    user: null
 }
 
 const userReducer = (state = initialState, action) => {
@@ -10,12 +10,12 @@ const userReducer = (state = initialState, action) => {
         case ACTION_TYPES.USER_CALL_SUCCESS:
             return {
                 ...state,
-                addressList: action.addressList
+                user: action.user
             }
         case ACTION_TYPES.USER_CALL_FAILURE:
             return {
                 ...state,
-                addressList: []
+                user: null
             };
 
         default:
