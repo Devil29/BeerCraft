@@ -26,9 +26,12 @@ class AddressPage extends Component {
             console.log(result);
             result = result.splice(0,5); //Taking first 200 rest to be handled by Pagination
             this.setState({displayAddress: result[0].address});
+            this.props.successUserdata(addressData);
             this.renderedAddressData();
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error)
+            this.props.failureUserdata()});
     }
 
     componentWillMount() {
@@ -83,8 +86,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        successAddressdata: (addressData) => dispatch(ACTIONS.successAddressCall(addressData)),
-        failureAddressdata: () => dispatch(ACTIONS.failureAddressCall())
+        successUserdata: (addressData) => dispatch(ACTIONS.successUserCall(addressData)),
+        failureUserdata: () => dispatch(ACTIONS.failureUserCall())
     }
 }
 

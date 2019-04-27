@@ -15,16 +15,16 @@ export const failureBeerCall = () => {
     }
 }
 
-export const successAddressCall = (addressList) => {
+export const successUserCall = (addressList) => {
     console.log(addressList);
     return {
-        type: ACTION_TYPES.ADDRESS_CALL_SUCCESS,
+        type: ACTION_TYPES.USER_CALL_SUCCESS,
         addressList
     }
 }
 
-export const failureAddressCall = () => {
+export const failureUserCall = () => {
     return {
-        type: ACTION_TYPES.ADDRESS_CALL_FAILURE
+        type: ACTION_TYPES.USER_CALL_FAILURE
     }
 }

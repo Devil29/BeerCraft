@@ -4,15 +4,15 @@ const initialState = {
     addressList: []
 }
 
-const addressReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
     console.log(action);
     switch (action.type) {
-        case ACTION_TYPES.ADDRESS_CALL_SUCCESS:
+        case ACTION_TYPES.USER_CALL_SUCCESS:
             return {
                 ...state,
                 addressList: action.addressList
             }
-        case ACTION_TYPES.ADDRESS_CALL_FAILURE:
+        case ACTION_TYPES.USER_CALL_FAILURE:
             return {
                 ...state,
                 addressList: []
@@ -23,4 +23,4 @@ const addressReducer = (state = initialState, action) => {
     }
 }
 
-export default addressReducer;
+export default userReducer;

@@ -1,11 +1,11 @@
 import beerReducer from './beerReducer';
 
 import { combineReducers } from 'redux';
-import addressReducer from './addressReducer';
+import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
     beer: beerReducer,
-    address: addressReducer
+    address: userReducer
 });
 
 export default rootReducer;
