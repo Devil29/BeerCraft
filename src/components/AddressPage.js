@@ -9,7 +9,8 @@ class AddressPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            displayAddress: []
+            displayAddress: [],
+            addAddress: {}
         }
     }
 
