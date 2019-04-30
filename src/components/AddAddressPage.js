@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+import axios from 'axios'
+import { connect } from 'react-redux';
+import * as ACTIONS from '../store/actions/action';
 
 class AddAddressPage extends Component {
 
@@ -23,11 +26,11 @@ class AddAddressPage extends Component {
 
     ADDRESS_REGEX = {
         addressLine1: "^[a-zA-Z]+$",
-        addressLine2: null,
-        state: null,
+        addressLine2: "^[a-zA-Z]+$",
+        state: "^[a-zA-Z]+$",
         pincode: "^[0-9]+$",
         mobileNumber: "^[0-9]+$",
-        title: null
+        title: "^[a-zA-Z]+$"
     }
 
     change = e => {
@@ -50,6 +53,14 @@ class AddAddressPage extends Component {
             return alert("Invalid Inputs");
         }
         console.log(this.state.address);
+        let user = this.props.getUserData;
+        user.address.push(this.state.address);
+        axios.put("https://vue-js-e14f0.firebaseio.com/data/" + user.id  + ".json", user)
+        .then((res)=> {
+            console.log("Success");
+            this.props.successUserdata(res.data);
+        })
+        .catch((err) => {console.log(err)})
     }
 
     blur = e => {
@@ -149,4 +160,17 @@ class AddAddressPage extends Component {
     }
 }
 
-export default AddAddressPage;
+function mapStateToProps(state){
+    return {
+        getUserData: state.user.user
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        successUserdata: (user) => dispatch(ACTIONS.successUserCall(user)),
+        failureUserdata: () => dispatch(ACTIONS.failureUserCall())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddAddressPage);

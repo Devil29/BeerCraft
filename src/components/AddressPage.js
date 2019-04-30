@@ -22,6 +22,7 @@ class AddressPage extends Component {
             let result=[];
             console.log(addressData)
             Object.keys(addressData).forEach(function(key){
+                addressData[key].id = key;
                 result.push(addressData[key])
             });
             console.log(result);
