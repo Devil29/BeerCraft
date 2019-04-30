@@ -10,7 +10,24 @@ class AddAddressPage extends Component {
             pincode: "",
             mobileNumber: "",
             title: ""
+        },
+        addressErrors: {
+            addressLine1: null,
+            addressLine2: null,
+            state: null,
+            pincode: null,
+            mobileNumber: null,
+            title: null
         }
+    }
+
+    ADDRESS_REGEX = {
+        addressLine1: "^[a-zA-Z]+$",
+        addressLine2: null,
+        state: null,
+        pincode: "^[0-9]+$",
+        mobileNumber: "^[0-9]+$",
+        title: null
     }
 
     change = e => {
@@ -22,7 +39,31 @@ class AddAddressPage extends Component {
 
     onSubmit = e => {
         e.preventDefault();
+        let address = this.state.address;
+        let valid = true;
+        Object.keys(address).forEach(key => {
+            if(address[key]==""){
+                valid=false;
+            }
+        });
+        if(!valid){
+            return alert("Invalid Inputs");
+        }
         console.log(this.state.address);
+    }
+
+    blur = e => {
+        let name = e.target.id;
+        let value = e.target.value;
+        let regex = new RegExp(this.ADDRESS_REGEX[name]);
+        let addressErrors = this.state.addressErrors
+        if(!regex.test(value)){
+            addressErrors[name] = "Invalid " + name;
+        } else {
+            addressErrors[name] = null;
+        }
+        this.setState({addressErrors});
+
     }
 
     render() {
@@ -35,8 +76,10 @@ class AddAddressPage extends Component {
                     placeholder="Address Line 1"
                     value={this.state.address.addressLine1}
                     onChange={e => this.change(e)}
+                    onBlur={e => this.blur(e)}
                     type="text"
                     />
+                <span color="red">{this.state.addressErrors.addressLine1}</span>
                     <br />
                 <input
                     address="addressLine2"
@@ -45,8 +88,10 @@ class AddAddressPage extends Component {
                     placeholder="Address Line 2"
                     value={this.state.address.addressLine2}
                     onChange={e => this.change(e)}
+                    onBlur={e => this.blur(e)}
                     type="text"
                     />
+                <span color="red">{this.state.addressErrors.addressLine2}</span>
                     <br />
                 <input
                     address="state"
@@ -55,8 +100,10 @@ class AddAddressPage extends Component {
                     placeholder="State"
                     value={this.state.address.state}
                     onChange={e => this.change(e)}
+                    onBlur={e => this.blur(e)}
                     type="text"
                     />
+                <span color="red">{this.state.addressErrors.state}</span>
                     <br />
                 <input
                     address="pincode"
@@ -66,7 +113,10 @@ class AddAddressPage extends Component {
                     value={this.state.address.pincode}
                     onChange={e => this.change(e)}
                     type="number"
+                    onBlur={e => this.blur(e)}
+                    maxLength="6"
                     />
+                <span color="red">{this.state.addressErrors.pincode}</span>
                     <br />
                 <input
                     address="mobileNumber"
@@ -75,8 +125,11 @@ class AddAddressPage extends Component {
                     placeholder="Mobile Number"
                     value={this.state.address.mobileNumber}
                     onChange={e => this.change(e)}
+                    maxLength="10"
+                    onBlur={e => this.blur(e)}
                     type="number"
                     />
+                <span color="red">{this.state.addressErrors.mobileNumber}</span>
                     <br />
                 <input
                     address="title"
@@ -85,21 +138,13 @@ class AddAddressPage extends Component {
                     placeholder="Title"
                     value={this.state.address.title}
                     onChange={e => this.change(e)}
+                    onBlur={e => this.blur(e)}
                     type="text"
                     />
+                <span color="red">{this.state.addressErrors.title}</span>
                     <br />
                     <button className="btn btn-primary" onClick={e => this.onSubmit(e)}>Submit</button>
             </form>
-            // <div className="container">
-            //     <form className="row">
-            //         <label htmlFor="owner">Owner</label> 
-            //         <input type="text" name="owner" id="owner" /><br></br>
-            //         <label htmlFor="description">Description</label> 
-            //         <input type="text" name="description" id="description" />
-            //         <button>Add new cat</button>
-            //         <input type="submit" value="Submit" /> 
-            //     </form>
-            // </div>
         )
     }
 }
