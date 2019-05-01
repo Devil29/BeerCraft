@@ -27,13 +27,39 @@ class AddressPage extends Component {
             });
             console.log(result);
             result = result.splice(0,5); //Taking first 200 rest to be handled by Pagination
-            this.setState({displayAddress: result[0].address});
+            //this.setState({displayAddress: result[0].address});
             this.props.successUserdata(result[0]);
+            this.setStoreDisplayAddress();
             // this.renderedAddressData();
         })
         .catch(error => {
             console.log(error)
             this.props.failureUserdata()});
+    }
+
+    setStoreDisplayAddress = () => {
+        let user = this.props.getUserData;
+        this.setState({displayAddress: user.address});
+    }
+
+    removeAddressData = e => {
+        let user= this.props.getUserData;
+        let addressId = e.target.id;
+        console.log(addressId);
+        let removeIndex = 0;
+        for(let i=0;i<user.address.length;i++){
+            if(user.address[i].id == addressId){
+                removeIndex = i;
+            }
+        }
+        user.address.splice(removeIndex,1);
+        axios.put("https://vue-js-e14f0.firebaseio.com/data/" + user.id  + ".json", user)
+        .then((res)=> {
+            console.log("Success");
+            this.props.successUserdata(res.data);
+            this.setStoreDisplayAddress();
+        })
+        .catch((err) => {console.log(err)})
     }
 
     componentWillMount() {
@@ -59,20 +85,12 @@ class AddressPage extends Component {
                             <div className="card-body">
                                 <h5 className="card-title">{value.title}</h5>
                                 <h6 className="card-subtitle mb-2 text-muted">{value.mobileNumber}</h6>
-                                <p className="card-text">{value.addressLine1}, {value.addressLine2}, {value.city}, {value.state}, {value.mobileNumber}</p>
+                                <p className="card-text">{value.addressLine1}, {value.addressLine2}, {value.city}, {value.state}, {value.pincode}</p>
                                 <br></br>
-                                <Link to="/" className="card-link">Edit Address</Link> &nbsp;&nbsp;&nbsp;&nbsp;
-                                <Link to="/" className="card-link">Remove Address</Link>
+                                <Link to={{pathname: "/add-address", state: {value}}} className="card-link">Edit Address</Link> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button className="btn btn-links" id={value.id} onClick={e=> this.removeAddressData(e)}>Remove Address</button>
                             </div>
                         </div>
-                        {/* <div className="card-body card-custom">
-                            <p className="card-text">Flat number - {value.addressLine1}</p>
-                            <p className="card-text">Street  - {value.addressLine2}</p>
-                            <p className="card-text">City - {value.city}</p>
-                            <p className="card-text">State - {value.state}</p>
-                            <p className="card-text">Pincode - {value.pincode}</p>
-                            <p className="card-text">Mobile number - {value.mobileNumber}</p>
-                        </div> */}
                     </div>
                 })}
                 </div>

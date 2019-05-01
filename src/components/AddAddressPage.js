@@ -5,32 +5,44 @@ import * as ACTIONS from '../store/actions/action';
 
 class AddAddressPage extends Component {
 
-    state = {
-        address: {
-            addressLine1: "",
-            addressLine2: "",
-            state: "",
-            pincode: "",
-            mobileNumber: "",
-            title: ""
-        },
-        addressErrors: {
-            addressLine1: null,
-            addressLine2: null,
-            state: null,
-            pincode: null,
-            mobileNumber: null,
-            title: null
+    constructor(props) {
+        super(props);
+        let {value} = this.props.location.state;
+        this.state = {
+            address: {
+                addressLine1: "",
+                addressLine2: "",
+                state: "",
+                pincode: "",
+                mobileNumber: "",
+                title: "",
+                id: null
+            },
+            addressErrors: {
+                addressLine1: null,
+                addressLine2: null,
+                state: null,
+                pincode: null,
+                mobileNumber: null,
+                title: null
+            }
+        }
+        if(value){
+            let address = this.state.address;
+            Object.keys(address).forEach((key)=>{
+                address[key] = value[key]
+            });
+            this.setState({address});
         }
     }
 
     ADDRESS_REGEX = {
-        addressLine1: "^[a-zA-Z]+$",
-        addressLine2: "^[a-zA-Z]+$",
-        state: "^[a-zA-Z]+$",
+        addressLine1: "^[0-9a-zA-Z\s]+$",
+        addressLine2: "^[0-9a-zA-Z\s]+$",
+        state: "^[0-9a-zA-Z\s]+$",
         pincode: "^[0-9]+$",
         mobileNumber: "^[0-9]+$",
-        title: "^[a-zA-Z]+$"
+        title: "^[0-9a-zA-Z\s]+$"
     }
 
     change = e => {
@@ -52,9 +64,23 @@ class AddAddressPage extends Component {
         if(!valid){
             return alert("Invalid Inputs");
         }
-        console.log(this.state.address);
+        console.log(address);
         let user = this.props.getUserData;
-        user.address.push(this.state.address);
+        if(!address.id){
+            let date = new Date();
+            let milliseconds = date.getTime();
+            address.id = milliseconds;
+            user.address.push(address);  
+        } else {
+            user.address.forEach((addr)=>{
+                if(addr.id == address.id){
+                    Object.keys(addr).forEach((key)=> {
+                        addr[key] = address[key]
+                    })
+                }
+            });
+        }
+        
         axios.put("https://vue-js-e14f0.firebaseio.com/data/" + user.id  + ".json", user)
         .then((res)=> {
             console.log("Success");
