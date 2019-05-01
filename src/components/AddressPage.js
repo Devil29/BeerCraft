@@ -48,7 +48,7 @@ class AddressPage extends Component {
         console.log(addressId);
         let removeIndex = 0;
         for(let i=0;i<user.address.length;i++){
-            if(user.address[i].id == addressId){
+            if(user.address[i].id === addressId){
                 removeIndex = i;
             }
         }
@@ -88,7 +88,7 @@ class AddressPage extends Component {
                                 <p className="card-text">{value.addressLine1}, {value.addressLine2}, {value.city}, {value.state}, {value.pincode}</p>
                                 <br></br>
                                 <Link to={{pathname: "/add-address", state: {value}}} className="card-link">Edit Address</Link> &nbsp;&nbsp;&nbsp;&nbsp;
-                                <button className="btn btn-links" id={value.id} onClick={e=> this.removeAddressData(e)}>Remove Address</button>
+                                <button className="btn btn-link" id={value.id} onClick={e=> this.removeAddressData(e)}>Remove Address</button>
                             </div>
                         </div>
                     </div>

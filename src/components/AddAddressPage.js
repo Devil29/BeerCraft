@@ -7,11 +7,12 @@ class AddAddressPage extends Component {
 
     constructor(props) {
         super(props);
-        let {value} = this.props.location.state;
+        let value = this.props.location && this.props.location.state && this.props.location.state.value;
         this.state = {
             address: {
                 addressLine1: "",
                 addressLine2: "",
+                city: "",
                 state: "",
                 pincode: "",
                 mobileNumber: "",
@@ -21,6 +22,7 @@ class AddAddressPage extends Component {
             addressErrors: {
                 addressLine1: null,
                 addressLine2: null,
+                city: null,
                 state: null,
                 pincode: null,
                 mobileNumber: null,
@@ -37,12 +39,13 @@ class AddAddressPage extends Component {
     }
 
     ADDRESS_REGEX = {
-        addressLine1: "^[0-9a-zA-Z\s]+$",
-        addressLine2: "^[0-9a-zA-Z\s]+$",
-        state: "^[0-9a-zA-Z\s]+$",
+        addressLine1: "^[-,0-9a-zA-Z\\s]+$",
+        addressLine2: "^[-,0-9a-zA-Z\\s]+$",
+        state: "^[-,0-9a-zA-Z\\s]+$",
+        city: "^[-,0-9a-zA-Z\\s]+$",
         pincode: "^[0-9]+$",
         mobileNumber: "^[0-9]+$",
-        title: "^[0-9a-zA-Z\s]+$"
+        title: "^[-,0-9a-zA-Z\\s]+$"
     }
 
     change = e => {
@@ -57,7 +60,7 @@ class AddAddressPage extends Component {
         let address = this.state.address;
         let valid = true;
         Object.keys(address).forEach(key => {
-            if(address[key]==""){
+            if(address[key] === ""){
                 valid=false;
             }
         });
@@ -73,7 +76,7 @@ class AddAddressPage extends Component {
             user.address.push(address);  
         } else {
             user.address.forEach((addr)=>{
-                if(addr.id == address.id){
+                if(addr.id === address.id){
                     Object.keys(addr).forEach((key)=> {
                         addr[key] = address[key]
                     })
@@ -85,6 +88,8 @@ class AddAddressPage extends Component {
         .then((res)=> {
             console.log("Success");
             this.props.successUserdata(res.data);
+            const { history } = this.props;
+            history.push('/address');
         })
         .catch((err) => {console.log(err)})
     }
@@ -129,6 +134,18 @@ class AddAddressPage extends Component {
                     type="text"
                     />
                 <span color="red">{this.state.addressErrors.addressLine2}</span>
+                    <br />
+                <input
+                    address="city"
+                    id="city"
+                    className="form-control"
+                    placeholder="City"
+                    value={this.state.address.city}
+                    onChange={e => this.change(e)}
+                    onBlur={e => this.blur(e)}
+                    type="text"
+                    />
+                <span color="red">{this.state.addressErrors.city}</span>
                     <br />
                 <input
                     address="state"
