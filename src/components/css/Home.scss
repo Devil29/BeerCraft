@@ -1,0 +1,30 @@
+.home-page {
+    .carousel-inner img {
+        width: 100%; /* Set width to 100% */
+        margin: auto;
+        min-height:200px;
+    }
+    footer {
+        background-color: #f2f2f2;
+        padding: 25px;
+    }
+    .image-custom {
+        width: 100%;;
+    }
+    .image-div-custom {
+        margin-bottom: 5px;
+    }
+    .div-container-fluid {
+        padding: 60px 50px;
+    }
+    .bg-grey {
+        background-color: #f6f6f6;
+    }
+    .bg-footer {
+        background-color: #a4b792;
+    }
+    .custom-text-center {
+        margin-top: -20px;
+        margin-bottom: 40px; 
+    }
+}

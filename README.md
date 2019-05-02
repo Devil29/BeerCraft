@@ -32,3 +32,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+To Do Task
+- [ ] Banner on Home page
+- [ ] Sign up Login flow
+- [ ] Cart Page 
+- [ ] Display number of element in car in Header
+- [ ] Payment Gateway Integration
+- [ ] Order History
