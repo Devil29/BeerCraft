@@ -5,7 +5,7 @@ class Header extends Component{
     render(){
         return (
             <div>
-                <nav className="navbar navbar-default navbar-custom">
+                <nav className="navbar navbar-default navbar-custom navbar-toggler">
                     <div className="container-fluid">
                         <div className="navbar-header">
                             <Link className="navbar-brand" to="" >Beer Craft</Link>
