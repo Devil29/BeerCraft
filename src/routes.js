@@ -7,6 +7,7 @@ import AddressPage from './components/AddressPage';
 import AddAddressPage from './components/AddAddressPage';
 
 import {Route, Router} from 'react-router';
+import Login from './components/Login';
 
 class Routes extends Component{
     render(){
@@ -18,6 +19,7 @@ class Routes extends Component{
                     <Route exact path='/list' component={SearchResultPage}></Route>
                     <Route exact path='/address' component={AddressPage}></Route>
                     <Route exact path='/add-address' component={AddAddressPage}></Route>
+                    <Route exact path='/login' component={Login}></Route>
                 </Router>
             </div>
         );

@@ -22,7 +22,7 @@ class Header extends Component{
                                 <li><Link>Wallet</Link></li>
                             </ul>
                         </li>
-                        <li><Link><span className=""></span>Logout</Link></li>
+                        <li><Link to="/login"><span className=""></span>Login</Link></li>
                         </ul>
                     </div>
                 </nav>  
