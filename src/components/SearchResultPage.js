@@ -20,7 +20,7 @@ class SearchResultPage extends Component{
         .then(res => {
             console.log(res)
             let beerData = res.data;
-            beerData = beerData.splice(0,200); //Taking first 200 rest to be handled by Pagination
+            beerData = beerData.splice(0,400); //Taking first 200 rest to be handled by Pagination
             this.props.successBeerdata(beerData);
             this.renderedBeers();
         })
@@ -123,8 +123,11 @@ class SearchResultPage extends Component{
                                 <img className="card-img-top image-custom" src={require(`../assets/Beericon.png`)} alt="Card cap"></img>
                                 <div className="card-body">
                                     <h5 className="card-title">Name - {value.name}</h5>
-                                    <p className="card-text">Style  - {value.style}</p>
-                                    <p className="card-text-2">Ounces - {value.ounces}</p>
+                                    <p className="card-text-2">Style  - {value.style}</p>
+                                    <p className="card-text-2 card-description-custom">Ounces - {value.ounces}</p>
+                                    <p className="card-text-2 card-description-custom"> Abv - {value.abv}</p>
+                                    <p className="card-text-2 card-description-custom"> Ibu - {value.ibu || "NA"}</p>
+                                    <h4 className="card-text-2"> Price - {value.price || "1000"}</h4>
                                     <button className="btn btn-primary" data-toggle="modal" onClick={() => this.openModelToSelectBeer(value)} data-target="#myModal">Add To Cart</button>
                                 </div>
                             </div>

@@ -10,6 +10,12 @@
     box-shadow: 2px;
     padding: 10px;
     margin-bottom: 5px;
+    height: 320px;
+  }
+
+  .card-description-custom {
+    margin-top: -10px; 
+    font-family: serif;
   }
 
   form.example input[type=text] {
