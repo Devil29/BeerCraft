@@ -1,6 +1,15 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
 
+
+function showLogin(){
+    return(<li><Link to="/login"><span className=""></span>Login</Link></li>);
+}
+
+function showLogout(){
+    return(<li><Link to="/logout"><span className=""></span>Logout</Link></li>);
+}
 class Header extends Component{
     render(){
         return (
@@ -22,7 +31,7 @@ class Header extends Component{
                                 <li><Link>Wallet</Link></li>
                             </ul>
                         </li>
-                        <li><Link to="/login"><span className=""></span>Login</Link></li>
+                        { this.props.userData ? showLogout() :  showLogin()}
                         </ul>
                     </div>
                 </nav>  
@@ -31,4 +40,10 @@ class Header extends Component{
     }
 }
 
-export default Header;
+function mapStateToProps(state){
+    return {
+        userData: state.user.user
+    }
+}
+
+export default connect(mapStateToProps)(Header);

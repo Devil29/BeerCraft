@@ -11,10 +11,6 @@ const contentBody = {
     backgroundColor: "#d69f60" 
 }
 
-//TO get this value from store
-function getUserMoney(){
-    return 1000
-}
 
 class Home extends Component{
     render(){

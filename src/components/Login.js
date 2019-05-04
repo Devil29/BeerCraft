@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './css/Login.scss'
 
 class Login extends Component {
     constructor(props) {
@@ -57,36 +58,44 @@ class Login extends Component {
     }
     
     render() {
-        return(
-            <form className="form-group">
-                <input
-                    address="emailId"
-                    id="emailId"
-                    className="form-control"
-                    placeholder="Email id"
-                    value={this.state.login.emailId}
-                    onChange={e => this.change(e)}
-                    onBlur={e => this.blur(e)}
-                    type="text"
-                    />
-                <span color="red">{this.state.loginError.emailId}</span>
-                <br />
-
-                <input
-                    address="password"
-                    id="password"
-                    className="form-control"
-                    placeholder="Password"
-                    value={this.state.login.password}
-                    onChange={e => this.change(e)}
-                    onBlur={e => this.blur(e)}
-                    type="password"
-                    />
-                <span color="red">{this.state.loginError.password}</span>
-                <br />
-                <button className="btn btn-primary" onClick={e => this.onSubmit(e)}>Login</button>
-            </form>
-        );
+        return(<div class="login-page">
+                <div class="wrapper">
+                    <form class="form-signin">       
+                        <h2 class="form-signin-heading">Please login</h2>
+                        <input 
+                            class="form-control" 
+                            name="username" 
+                            id="emailId"
+                            placeholder="Email Address" 
+                            value={this.state.login.emailId}
+                            onChange={e => this.change(e)}
+                            onBlur={e => this.blur(e)} 
+                            type="text" 
+                            />
+                        <span color="red">{this.state.loginError.emailId}</span>
+                        <br />
+                        <input 
+                            class="form-control" 
+                            name="password"
+                            id="password"
+                            placeholder="Password"
+                            value={this.state.login.password}
+                            onChange={e => this.change(e)}
+                            onBlur={e => this.blur(e)}
+                            type="password" 
+                            />
+                        <span color="red">{this.state.loginError.password}</span>
+                        <br />
+                        <label class="checkbox">
+                            <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"/> Remember me
+                        </label>
+                        <button class="btn btn-lg btn-primary btn-block" onClick={e => this.onSubmit(e)}>
+                            Login
+                        </button>   
+                    </form>
+                </div>
+            </div>
+            );
     }
 }
 
