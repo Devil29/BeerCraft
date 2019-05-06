@@ -46,13 +46,7 @@ class AddressPage extends Component {
         let user= this.props.getUserData;
         let addressId = e.target.id;
         console.log(addressId);
-        let removeIndex = 0;
-        for(let i=0;i<user.address.length;i++){
-            if(user.address[i].id === addressId){
-                removeIndex = i;
-            }
-        }
-        user.address.splice(removeIndex,1);
+        user.address = user.address.filter( el => el.id !== parseInt(addressId));
         axios.put("https://vue-js-e14f0.firebaseio.com/data/" + user.id  + ".json", user)
         .then((res)=> {
             console.log("Success");
