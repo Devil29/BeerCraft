@@ -4,7 +4,7 @@ import SearchResultPage from './components/SearchResultPage';
 import history from './utils/history';
 import Home from './components/Home';
 import AddressPage from './components/AddressPage';
-import Cart from './components/cartPage';
+import Cart from './components/CartPage';
 import AddAddressPage from './components/AddAddressPage';
 
 import {Route, Router} from 'react-router';

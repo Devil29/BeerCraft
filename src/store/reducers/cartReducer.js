@@ -28,7 +28,7 @@ function addItemsToCart(cartItems, itemDetails){
 function editItemsToCart(cartItems, itemDetails) {
     let index = -1;
     for(let i=0; i<cartItems.length; i++){
-        if(cartItems[i].id == itemDetails.id){
+        if(cartItems[i].id === itemDetails.id){
             index = i;
         }
     }
@@ -39,7 +39,7 @@ function editItemsToCart(cartItems, itemDetails) {
 function removeItemFromCart(cartItems, cardId) {
     let index = -1;
     for(let i=0; i<cartItems.length; i++){
-        if(cartItems[i].id == cardId){
+        if(cartItems[i].id === cardId){
             index = i;
         }
     }
