@@ -28,3 +28,24 @@ export const failureUserCall = () => {
         type: ACTION_TYPES.USER_CALL_FAILURE
     }
 }
+
+export const addItemToCart = (itemDetails) => {
+    return {
+        type: ACTION_TYPES.ADD_ITEM_TO_CART,
+        itemDetails
+    }
+}
+
+export const editItemInCart = (itemDetails) => {
+    return {
+        type: ACTION_TYPES.EDIT_ITEM_IN_CART,
+        itemDetails
+    }
+}
+
+export const removeItemFromCart = (itemId) => {
+    return {
+        type: ACTION_TYPES.REMOVE_ITEM_FROM_CART,
+        itemId
+    }
+}

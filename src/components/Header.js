@@ -24,7 +24,7 @@ class Header extends Component{
                             <li><Link>Add</Link></li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                        <li><Link><span className=""></span>Cart</Link></li>
+                        <li><Link to="/cart"><span className=""></span>Cart</Link></li>
                         <li className="dropdown"><Link className="dropdown-toggle" data-toggle="dropdown">Profile <span className="caret"></span></Link>
                             <ul className="dropdown-menu">
                                 <li><Link to="/address">Address</Link></li>

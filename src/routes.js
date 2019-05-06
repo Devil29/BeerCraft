@@ -4,6 +4,7 @@ import SearchResultPage from './components/SearchResultPage';
 import history from './utils/history';
 import Home from './components/Home';
 import AddressPage from './components/AddressPage';
+import Cart from './components/cartPage';
 import AddAddressPage from './components/AddAddressPage';
 
 import {Route, Router} from 'react-router';
@@ -20,6 +21,7 @@ class Routes extends Component{
                     <Route exact path='/address' component={AddressPage}></Route>
                     <Route exact path='/add-address' component={AddAddressPage}></Route>
                     <Route exact path='/login' component={Login}></Route>
+                    <Route exact path='/cart' component={Cart}></Route>
                 </Router>
             </div>
         );

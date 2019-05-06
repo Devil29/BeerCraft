@@ -75,10 +75,12 @@ class SearchResultPage extends Component{
     }
 
     addBeerToCart = (event) => {
+        let cartItem = this.state.selectedBeer;
         console.log(this.state.selectedBeer);
-        console.log(event);
         if (this.refs.itemCount) {
             console.log(this.refs.itemCount.value);
+            cartItem.count = this.refs.itemCount.value;
+            this.props.addItemToCart(cartItem);
         }
     }
 
@@ -148,7 +150,8 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return {
         successBeerdata: (beerData) => dispatch(ACTIONS.successBeerCall(beerData)),
-        failureBeerdata: () => dispatch(ACTIONS.failureBeerCall())
+        failureBeerdata: () => dispatch(ACTIONS.failureBeerCall()),
+        addItemToCart: (cartItem) => dispatch(ACTIONS.addItemToCart(cartItem))
     }
 }
 
