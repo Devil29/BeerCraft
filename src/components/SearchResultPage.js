@@ -80,6 +80,7 @@ class SearchResultPage extends Component{
         if (this.refs.itemCount) {
             console.log(this.refs.itemCount.value);
             cartItem.count = this.refs.itemCount.value;
+            console.log(cartItem);
             this.props.addItemToCart(cartItem);
         }
     }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import './css/CartPage.scss';
+import { userInfo } from 'os';
 
 class Cart extends Component {
     constructor(props) {
@@ -14,8 +15,18 @@ class Cart extends Component {
         console.log("Edit Item called");
     }
 
-    removeItemFromCart(event){
+    removeItemFromCart = (event) => {
         console.log("Remove Item called");
+        let itemId = event.target.id;
+        let items = this.props.cartItems;
+        let index=0;
+        for(let i=0; i<items.length; i++) {
+            if(items[i].id == itemId) {
+                index = i;
+            }
+        }
+        items.splice(index, 1);
+        this.setState({cartItems: items});
     }
 
     componentWillMount(){

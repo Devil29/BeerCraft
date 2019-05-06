@@ -21,7 +21,20 @@ const initialState = {
 
 */
 function addItemsToCart(cartItems, itemDetails){
-    cartItems.push(itemDetails);
+    let isNew = true;
+    // cartItems.forEach(element => {
+    //     if(element.id == itemDetails.id) {
+    //         element.count += itemDetails.count;
+    //         isNew = false;
+    //     }
+    // });
+    for(let i=0; i<cartItems.length; i++){
+        if(cartItems[i].id === itemDetails.id){
+            isNew = false;
+            cartItems[i].count = parseInt(cartItems[i].count) +  parseInt(itemDetails.count);
+        }
+    }
+    if(isNew) cartItems.push(itemDetails);
     return cartItems;
 }
 
