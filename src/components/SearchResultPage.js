@@ -75,11 +75,11 @@ class SearchResultPage extends Component{
     }
 
     addBeerToCart = (event) => {
-        let cartItem = this.state.selectedBeer;
-        console.log(this.state.selectedBeer);
+        let cartItem =  Object.assign({}, this.state.selectedBeer); // Copy Entire object to another variable
         if (this.refs.itemCount) {
+            console.log("Pre set", cartItem);
             console.log(this.refs.itemCount.value);
-            cartItem.count = this.refs.itemCount.value;
+            cartItem.count = parseInt(this.refs.itemCount.value);
             console.log(cartItem);
             this.props.addItemToCart(cartItem);
         }

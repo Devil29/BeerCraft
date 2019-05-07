@@ -31,7 +31,7 @@ function addItemsToCart(cartItems, itemDetails){
     for(let i=0; i<cartItems.length; i++){
         if(cartItems[i].id === itemDetails.id){
             isNew = false;
-            cartItems[i].count = parseInt(cartItems[i].count) +  parseInt(itemDetails.count);
+            cartItems[i].count = cartItems[i].count +  itemDetails.count;
         }
     }
     if(isNew) cartItems.push(itemDetails);
