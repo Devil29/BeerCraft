@@ -3,6 +3,7 @@ import axios from 'axios'
 import './css/SearchResultPage.scss';
 import * as ACTIONS from '../store/actions/action';
 import { connect } from 'react-redux';
+import mockBeerData from '../data/mockBeerData.json';
 
 class SearchResultPage extends Component{
 
@@ -16,17 +17,58 @@ class SearchResultPage extends Component{
     }
 
     getBeerData() {
+        // Try Firebase API first
         axios.get('https://vue-js-e14f0.firebaseio.com/beers.json')
         .then(res => {
             console.log(res)
             let beerData = res.data;
-            beerData = beerData.splice(0,400); //Taking first 200 rest to be handled by Pagination
-            this.props.successBeerdata(beerData);
-            this.renderedBeers();
+            // Check if data exists and is an array
+            if (beerData && Array.isArray(beerData) && beerData.length > 0) {
+                beerData = beerData.splice(0,400); //Taking first 400 rest to be handled by Pagination
+                this.props.successBeerdata(beerData);
+                this.renderedBeers();
+            } else {
+                // If API returns empty or invalid data, try Punk API
+                this.tryPunkAPI();
+            }
         })
         .catch(error => {
-            console.log(error)
-            this.props.failureBeerdata();
+            console.log('Firebase API error, trying alternative:', error)
+            // Try Punk API as alternative
+            this.tryPunkAPI();
+        })
+    }
+
+    tryPunkAPI() {
+        // Try Punk API as alternative
+        axios.get('https://api.punkapi.com/v2/beers?per_page=50')
+        .then(res => {
+            console.log('Punk API response:', res)
+            if (res.data && Array.isArray(res.data) && res.data.length > 0) {
+                // Map Punk API data to our format
+                const mappedData = res.data.map((beer, index) => ({
+                    id: beer.id || index + 1,
+                    name: beer.name || 'Unknown Beer',
+                    style: beer.tagline || beer.style || 'Unknown Style',
+                    ounces: (beer.volume && beer.volume.value) || 12,
+                    abv: beer.abv || 0,
+                    ibu: beer.ibu || 0,
+                    price: Math.floor((beer.abv || 5) * 30) // Calculate price based on ABV
+                }));
+                this.props.successBeerdata(mappedData);
+                this.renderedBeers();
+            } else {
+                // Fallback to mock data
+                console.log('Punk API returned empty data, using mock data');
+                this.props.successBeerdata(mockBeerData);
+                this.renderedBeers();
+            }
+        })
+        .catch(error => {
+            console.log('Punk API error, using mock data:', error)
+            // Final fallback to mock data
+            this.props.successBeerdata(mockBeerData);
+            this.renderedBeers();
         })
     }
 

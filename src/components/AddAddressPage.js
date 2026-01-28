@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux';
 import * as ACTIONS from '../store/actions/action';
+import history from '../utils/history';
 
 class AddAddressPage extends Component {
 
@@ -88,7 +89,6 @@ class AddAddressPage extends Component {
         .then((res)=> {
             console.log("Success");
             this.props.successUserdata(res.data);
-            const { history } = this.props;
             history.push('/address');
         })
         .catch((err) => {console.log(err)})

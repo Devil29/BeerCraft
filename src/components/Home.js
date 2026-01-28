@@ -55,52 +55,8 @@ class Home extends Component{
                     </a>
                 </div>
                 <br></br>
-                <div class="row">
-                    <div class="col-sm-6 image-div-custom">
-                        <img src="https://placehold.it/150x90?text=IMAGE1" class="img-responsive image-custom" alt="Not Found"/>
-                        <div class="carousel-caption">
-                            <h3>Search and buy your favourite Beers.</h3>
-                            <p>Cone Crusher available at 50% discount rate.</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="image-div-custom" >
-                            <img src="https://placehold.it/150x45?text=IMAGE2" class="img-responsive image-custom" alt="Not Found"/>
-                        </div>
-                        <div class="image-div-custom">
-                            <img src="https://placehold.it/150x45?text=IMAGE3" class="img-responsive image-custom" alt="Not Found"/>
-                        </div>
-                    </div>
-                </div>
-                <br></br>
-                <div class="row">
-                    <div class="col-sm-2 col-xs-6">
-                        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive image-custom" alt="Not Found"/>
-                    <p>Partner 1</p>
-                    </div>
-                    <div class="col-sm-2 col-xs-6"> 
-                        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive image-custom" alt="Not Found"/>
-                    <p>Partner 2</p>    
-                    </div>
-                    <div class="col-sm-2 col-xs-6"> 
-                        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive image-custom" alt="Not Found"/>
-                    <p>Partner 3</p>
-                    </div>
-                    <div class="col-sm-2 col-xs-6"> 
-                        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive image-custom" alt="Not Found"/>
-                    <p>Partner 4</p>
-                    </div> 
-                    <div class="col-sm-2 col-xs-6"> 
-                        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive image-custom" alt="Not Found"/>
-                    <p>Partner 5</p>
-                    </div>     
-                    <div class="col-sm-2 col-xs-6"> 
-                        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive image-custom" alt="Not Found"/>
-                    <p>Partner 6</p>
-                    </div> 
-                </div>
                 <div class="container-fluid text-center bg-grey">
-                    <h4>Out Top Collections</h4>
+                    <h4>Our Top Collections</h4>
                     <div class="row text-center">
                         <div class="col-sm-4">
                             <div class="thumbnail">

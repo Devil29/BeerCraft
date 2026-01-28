@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "name": "Pub Beer",
+    "style": "American Pale Lager",
+    "ounces": 12,
+    "abv": 4.5,
+    "ibu": 15,
+    "price": 120
+  },
+  {
+    "id": 2,
+    "name": "Rise of the Phoenix",
+    "style": "American IPA",
+    "ounces": 16,
+    "abv": 6.5,
+    "ibu": 65,
+    "price": 180
+  },
+  {
+    "id": 3,
+    "name": "Monks Blood",
+    "style": "Belgian Dark Ale",
+    "ounces": 12,
+    "abv": 8.0,
+    "ibu": 25,
+    "price": 250
+  },
+  {
+    "id": 4,
+    "name": "Devil's Cup",
+    "style": "American Pale Ale",
+    "ounces": 12,
+    "abv": 5.2,
+    "ibu": 40,
+    "price": 150
+  },
+  {
+    "id": 5,
+    "name": "Hopslam Ale",
+    "style": "American Double IPA",
+    "ounces": 16,
+    "abv": 10.0,
+    "ibu": 70,
+    "price": 320
+  },
+  {
+    "id": 6,
+    "name": "Black IPA",
+    "style": "American Black Ale",
+    "ounces": 12,
+    "abv": 6.8,
+    "ibu": 60,
+    "price": 200
+  },
+  {
+    "id": 7,
+    "name": "Wheat Beer",
+    "style": "American Pale Wheat Ale",
+    "ounces": 12,
+    "abv": 4.0,
+    "ibu": 10,
+    "price": 110
+  },
+  {
+    "id": 8,
+    "name": "Stout",
+    "style": "American Stout",
+    "ounces": 16,
+    "abv": 7.5,
+    "ibu": 50,
+    "price": 220
+  },
+  {
+    "id": 9,
+    "name": "Pilsner",
+    "style": "German Pilsner",
+    "ounces": 12,
+    "abv": 4.8,
+    "ibu": 20,
+    "price": 130
+  },
+  {
+    "id": 10,
+    "name": "Porter",
+    "style": "American Porter",
+    "ounces": 12,
+    "abv": 6.0,
+    "ibu": 35,
+    "price": 170
+  },
+  {
+    "id": 11,
+    "name": "Amber Ale",
+    "style": "American Amber Ale",
+    "ounces": 12,
+    "abv": 5.5,
+    "ibu": 30,
+    "price": 160
+  },
+  {
+    "id": 12,
+    "name": "Blonde Ale",
+    "style": "American Blonde Ale",
+    "ounces": 12,
+    "abv": 4.2,
+    "ibu": 15,
+    "price": 125
+  },
+  {
+    "id": 13,
+    "name": "Brown Ale",
+    "style": "American Brown Ale",
+    "ounces": 12,
+    "abv": 5.8,
+    "ibu": 28,
+    "price": 165
+  },
+  {
+    "id": 14,
+    "name": "Sour Ale",
+    "style": "American Wild Ale",
+    "ounces": 12,
+    "abv": 5.0,
+    "ibu": 5,
+    "price": 190
+  },
+  {
+    "id": 15,
+    "name": "Lager",
+    "style": "American Lager",
+    "ounces": 12,
+    "abv": 4.3,
+    "ibu": 12,
+    "price": 115
+  },
+  {
+    "id": 16,
+    "name": "Hefeweizen",
+    "style": "German Hefeweizen",
+    "ounces": 16,
+    "abv": 5.4,
+    "ibu": 8,
+    "price": 175
+  },
+  {
+    "id": 17,
+    "name": "Saison",
+    "style": "Belgian Saison",
+    "ounces": 12,
+    "abv": 6.2,
+    "ibu": 22,
+    "price": 210
+  },
+  {
+    "id": 18,
+    "name": "Barleywine",
+    "style": "American Barleywine",
+    "ounces": 16,
+    "abv": 11.0,
+    "ibu": 80,
+    "price": 350
+  },
+  {
+    "id": 19,
+    "name": "Gose",
+    "style": "German Gose",
+    "ounces": 12,
+    "abv": 4.5,
+    "ibu": 6,
+    "price": 195
+  },
+  {
+    "id": 20,
+    "name": "Kolsch",
+    "style": "German Kolsch",
+    "ounces": 12,
+    "abv": 4.8,
+    "ibu": 18,
+    "price": 140
+  }
+]
